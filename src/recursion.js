@@ -120,7 +120,9 @@ var exponent = function(base, exp) {
             return base * exponent(base, exp-1);
         }
     } else {
-        return (1/base) * exponent(base, exp+1);
+        var unrounded = (1/base) * exponent(base, exp+1);
+        var rounded = parseFloat(unrounded.toFixed(10));
+        return rounded;
     }
 };
 
