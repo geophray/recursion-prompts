@@ -131,6 +131,19 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+    var isPowerOfTwo = false;
+    if (n === 1) {
+        isPowerOfTwo = true;
+    }
+    if (n>1) {
+        if (n / 2 === 1) {
+            isPowerOfTwo = true;
+        } else {
+            isPowerOfTwo = powerOfTwo(n/2);
+        }
+    }
+    
+    return isPowerOfTwo;
 };
 
 // 9. Write a function that reverses a string.
