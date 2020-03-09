@@ -370,14 +370,12 @@ var replaceKeysInObj = function(obj, oldKey, newKey) {
 // fibonacci(5); // [0,1,1,2,3,5]
 // Note: The 0 is not counted.
 var fibonacci = function(n) {
-    var nFibonacci = [0, 1];
     if(n < 1) { return null; }
-    if(n === 1) { return nFibonacci; }
-    if(n < nFibonacci.length) {
-        var newVal = fibonacci(n-1) + fibonacci(n-2);
-        nFibonacci.push(newVal);
-    }
-    return nFibonacci;
+    if(n < 2) { return [0, 1]; }
+    
+    var array = fibonacci(n-1);
+    array.push(array[n-1] + array[n-2]);
+    return array;
 };
 
 // 26. Return the Fibonacci number located at index n of the Fibonacci sequence.
