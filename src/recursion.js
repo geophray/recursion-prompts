@@ -384,17 +384,35 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+    if(n < 0) { return null; }
+    if(n === 0) { return 0; }
+    if(n === 1) { return 1; }
+    if(n > 1) { return nthFibo(n-1) + nthFibo(n-2); }
 };
 
 // 27. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(array) {
+    if(array.length === 0) {return []; }
+    var currWord = array.pop();
+    currWord = currWord.toUpperCase();
+    var newArr = capitalizeWords(array);
+    newArr.push(currWord);
+    return newArr;
 };
 
 // 28. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car','poop','banana']); // ['Car','Poop','Banana']
 var capitalizeFirst = function(array) {
+    if(array.length === 0) { return []; }
+    var currWord = array.pop();
+    var upperCaseLetter = currWord.charAt(0).toUpperCase();
+    currWord = upperCaseLetter + currWord.substr(1);
+    // Create array for capitalized words
+    var newArr = capitalizeFirst(array);
+    newArr.push(currWord);
+    return newArr;
 };
 
 // 29. Return the sum of all even numbers in an object containing nested objects.
