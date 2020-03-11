@@ -425,16 +425,55 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+    var sum = 0;
+
+    for(var key in obj) {
+        if(obj[key] instanceof Object) {
+            sum += nestedEvenSum(obj[key]);
+        } else {
+            if(obj[key]%2 === 0) {
+                sum += obj[key];
+            }
+        }
+    }
+    return sum;
+
 };
 
 // 30. Flatten an array containing nested arrays.
 // flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
 var flatten = function(array) {
+    // Create new array for result
+    var result = [];
+    // Iterate over array checking if each value is an array
+    for(let i = 0; i < array.length; i++) {
+        var flatValsArr = [];
+        // If instance of array recursively call flatten on it
+        if(array[i] instanceof Array) {
+            flatValsArr = flatten(array[i]);
+        } else {
+            flatValsArr.push(array[i]);
+        }
+
+        // Add the flattened array to results
+        result.push(...flatValsArr);
+    }
+    // Return results
+    return result;
 };
 
 // 31. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {p:1, o:2, t:2, a:1}
-var letterTally = function(str, obj) {
+var letterTally = function(str, obj = {}) {
+    if(str.length === 0){
+        return obj;
+    }
+    if(obj[str[0]]) {
+        obj[str[0]]++;
+    } else {
+        obj[str[0]] = 1;
+    }
+    return letterTally(str.substr(1), obj);
 };
 
 // 32. Eliminate consecutive duplicates in a list. If the list contains repeated
